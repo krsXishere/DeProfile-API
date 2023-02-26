@@ -8,7 +8,7 @@ use App\Models\Sekolah;
 use App\Helpers\APIFormatter;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-
+use Illuminate\Support\Facades\DB;
 
 class SekolahController extends Controller
 {
@@ -24,6 +24,16 @@ class SekolahController extends Controller
 
     public function show($id) {
         $data = Sekolah::where('id', '=', $id)->orWhere('nama','LIKE','%'.$id.'%')->first();
+
+        if ($data) {
+            return APIFormatter::createAPI(200, 'Success', $data);
+        } else {
+            return APIFormatter::createAPI(400, 'Failed');
+        }
+    }
+
+    public function search($value) {
+        $data = Sekolah::where('nama','LIKE','%'.$value.'%')->orWhere('npsn','LIKE','%'.$value.'%')->orWhere('nss','LIKE','%'.$value.'%')->get();
 
         if ($data) {
             return APIFormatter::createAPI(200, 'Success', $data);
@@ -154,6 +164,26 @@ class SekolahController extends Controller
                 return APIFormatter::createAPI(400, 'Failed');
             }
         } catch (Exception $error) {
+            return APIFormatter::createAPI(400, 'Failed');
+        }
+    }
+
+    public function countSiswa($id) {
+        $jumlahSiswa = DB::select("select count(siswas.id) as jumlah from siswas, sekolahs, jurusans where siswas.jurusan_id = jurusans.id and jurusans.sekolah_id = sekolahs.id and sekolahs.id = '" .$id. "'");
+
+        if($jumlahSiswa) {
+            return APIFormatter::createAPI(200, 'Success', $jumlahSiswa[0]);
+        } else {
+            return APIFormatter::createAPI(400, 'Failed');
+        }
+    }
+
+    public function countGuru($id) {
+        $jumlahGuru = DB::select("select count(gurus.id) as jumlah from gurus, sekolahs where gurus.sekolah_id = sekolahs.id and sekolahs.id = '" .$id. "'");
+
+        if($jumlahGuru) {
+            return APIFormatter::createAPI(200, 'Success', $jumlahGuru[0]);
+        } else {
             return APIFormatter::createAPI(400, 'Failed');
         }
     }

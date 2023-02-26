@@ -51,6 +51,9 @@ Route::group(['middleware' => ['auth:sanctum', 'ability:public-user']], function
     Route::get('sekolah-jurusan/{id}', [SekolahController::class, 'jurusan']);
     Route::get('sekolah-prestasi/{id}', [SekolahController::class, 'prestasi']);
     Route::get('sekolah-ekstrakulikuler/{id}', [SekolahController::class, 'ekstrakulikuler']);
+    Route::get('sekolah-jumlah-siswa/{id}', [SekolahController::class, 'countSiswa']);
+    Route::get('sekolah-jumlah-guru/{id}', [SekolahController::class, 'countGuru']);
+    Route::get('sekolah-search/{value}', [SekolahController::class, 'search']);
 
     //kurikulum
     Route::get('kurikulum', [KurikulumController::class, 'index']);
@@ -146,6 +149,9 @@ Route::group(['middleware' => ['auth:sanctum', 'ability:admin-user']], function(
     Route::get('admin/sekolah-jurusan/{id}', [SekolahController::class, 'jurusan']);
     Route::get('admin/sekolah-prestasi/{id}', [SekolahController::class, 'prestasi']);
     Route::get('admin/sekolah-ekstrakulikuler/{id}', [SekolahController::class, 'ekstrakulikuler']);
+    Route::get('admin/sekolah-jumlah-siswa/{id}', [SekolahController::class, 'countSiswa']);
+    Route::get('admin/sekolah-jumlah-guru/{id}', [SekolahController::class, 'countGuru']);
+    Route::get('admin/sekolah-search/{value}', [SekolahController::class, 'search']);
 
     //kurikulum
     Route::get('admin/kurikulum', [KurikulumController::class, 'index']);

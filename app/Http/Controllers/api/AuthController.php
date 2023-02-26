@@ -51,12 +51,12 @@ class AuthController extends Controller
             'password' => bcrypt($fields['password']),
         ]);
 
-        // $data = User::
+        $data = User::where('email', $request->email)->first();
 
         $token = $user->createToken($request->email)->plainTextToken;
 
         if($token) {
-            return APIFormatter::createAPI(200, $token, $user);
+            return APIFormatter::createAPI(200, $token, $data);
         } else {
             return APIFormatter::createAPI(400, 'Failed');
         }

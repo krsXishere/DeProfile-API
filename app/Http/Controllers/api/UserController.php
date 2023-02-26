@@ -86,20 +86,16 @@ class UserController extends Controller
                 'password' => bcrypt($request->password),
             ]);
 
-            return response()->json([
-                'message' => 'Ubah kata sandi berhasil.',
-            ], 200);
+            return APIFormatter::createAPI(200, 'Success', $user);
         } else {
-            return response()->json([
-                'message' => 'Ubah kata sandi gagal.',
-            ], 400);
+            return APIFormatter::createAPI(400, 'Failed');
         }
     }
 
     public function fotoProfilUser(Request $request) {
         try {
             $request->validate([
-                'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+                'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:5048',
             ]);
 
             $image_path = $request->file('image')->store('users_picture', 'public');
@@ -123,7 +119,7 @@ class UserController extends Controller
     public function editFotoProfilUser(Request $request) {
         try {
             $request->validate([
-                'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+                'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:5048',
             ]);
 
             $users = $request->user();
@@ -137,7 +133,7 @@ class UserController extends Controller
             $users->image = $image_path;
             $users->save();
 
-            $data = User::where('id', '=', $users->id)->get();
+            $data = User::where('id', '=', $users->id)->first();
 
             if ($data) {
                 return APIFormatter::createAPI(200, 'Success', $data);
