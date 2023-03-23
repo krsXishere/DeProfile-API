@@ -54,7 +54,7 @@ class SiswaController extends Controller
                 'pendidikan' => $request->pendidikan,
                 'alamat' => $request->alamat,
                 'no_telpon' => $request->no_telpon,
-                'email' => 'required',
+                'email' => $request->email,
                 'jurusan_id' => $request->jurusan_id,
             ]);
 

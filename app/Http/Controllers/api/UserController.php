@@ -99,6 +99,8 @@ class UserController extends Controller
             ]);
 
             $image_path = $request->file('image')->store('users_picture', 'public');
+            $image = $request->file('image');
+            $image->move(public_path('storage/users_picture'), $image_path);
 
             $users = $request->user();
             $users->image = $image_path;
@@ -125,13 +127,25 @@ class UserController extends Controller
             $users = $request->user();
 
             $old_image_path = public_path().'/storage'.'/'.$users->image;
-            if(!$old_image_path) {
-                unlink($old_image_path);
-            }
-
             $image_path = $request->file('image')->store('users_picture', 'public');
-            $users->image = $image_path;
-            $users->save();
+            $image = $request->file('image');
+            
+            if(!$old_image_path) {
+                if(file_exist($old_image_path)) {
+                    unlink($old_image_path);
+                    $image->move(public_path('storage/users_picture'), $image_path);
+                    $users->image = $image_path;
+                    $users->save();
+                } else {
+                    $image->move(public_path('storage/users_picture'), $image_path);
+                    $users->image = $image_path;
+                    $users->save();
+                }
+            } else {
+                $image->move(public_path('storage/users_picture'), $image_path);
+                $users->image = $image_path;
+                $users->save();
+            }
 
             $data = User::where('id', '=', $users->id)->first();
 

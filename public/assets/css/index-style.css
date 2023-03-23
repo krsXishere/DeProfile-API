@@ -1,0 +1,265 @@
+* {
+    font-family: 'Poppins';
+    padding: 0;
+    margin: 0;
+}
+
+.logo {
+    margin-top: 30px;
+    margin-left: 40px;
+}
+
+.logo-name {
+    color: white;
+    margin-left: 12px;
+}
+
+.container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.space {
+    padding-top: 550px;
+}
+
+.sidebar {
+    border-radius: 0px 30px 10px 0px;
+    background-color: #111827;
+    width: 260px;
+    padding: 24px;
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: column;
+    transition: all ease-in;
+}
+
+.sidebar.hide {
+    width: 87px;
+    transition: all ease-out .3s;
+}
+
+.main .icon 
+.main .text{
+    background-color: #111827;
+}
+
+.main {
+    flex-grow: 1;
+    background-color: white;
+}
+
+/* .main-section .home-content .bx-menu,
+.main-section .home-content .text {
+    color: #111827;
+    font-size: 35px;
+} */
+
+.sidebar .description-header {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 16px;
+    text-align: center;
+    color: white;
+    transition: all ease-out 0.3s;
+}
+
+.hideside {
+    display: none; transition: all ease-in 0.3s;
+}
+
+.sidebar a {
+    text-decoration: none;
+}
+
+.sidebar .header-sidebar .list-item {
+    display: flex; 
+    flex-direction: row;
+    align-items: center;
+    padding: 12px 10px;
+    border-radius: 8px;
+    height: 40px;
+    box-sizing: border-box;
+}
+    
+.sidebar .header-sidebar .list-item .icon {
+    margin-right: 12px;
+}
+
+.sidebar .header-sidebar .illustration {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+    margin: 10px 0 22px 0;
+    box-sizing: border-box;
+}
+
+.sidebar .main .list-item .description-header {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    text-align: center;
+    color: white;
+    line-height: 16px;
+}
+
+.sidebar .main-sidebar .list-item .icon {
+    margin-right: 12px;
+}
+
+.sidebar .main-sidebar .list-item .description-main-sidebar {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    text-align: center;
+    color: white;
+    line-height: 16px;
+}
+
+.sidebar .main-sidebar .list-item-danger .description-main-sidebar {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    text-align: center;
+    color: white;
+    line-height: 16px;
+}
+
+.sidebar .main-sidebar .list-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 12px;
+    border-radius: 8px;
+    width: 212px;
+    box-sizing: border-box;
+    transition: all ease-in .2s;
+}
+
+.sidebar .main-sidebar .list-item-danger {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 12px;
+    border-radius: 8px;
+    width: 212px;
+    box-sizing: border-box;
+    transition: all ease-in .2s;
+}
+
+.sidebar .main-sidebar .list-item:hover {
+    background-color: #17ACFF;
+    transition: all ease-in .2s;
+    width: 100%;
+    padding: 10px 10px 10px 5px;
+}
+
+.sidebar .main-sidebar .list-item-danger:hover {
+    background-color: #FF3737;
+    transition: all ease-in .2s;
+    width: 100%;
+    padding: 10px 10px 10px 5px;
+}
+
+/* toogle menu */
+#menu-button {
+    width: 32px;
+    position: absolute;
+    overflow: hidden;
+    margin: 5px;
+}
+
+#menu-label {
+    position: relative;
+    display: block;
+    height: 20px;
+    cursor: pointer;
+}
+
+#menu-checkbox {
+    display: none;
+}
+
+#hamburger,
+#menu-label:after,
+#menu-label:before {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: black;
+}
+
+#menu-label:after,
+#menu-label:before {
+    content: none;
+}
+
+#menu-label:before {
+    top: 0;
+} 
+
+#menu-label:before {
+    top: 8px;
+}
+
+#hamburger {
+    top: 16px;
+}
+
+#hamburger:before {
+    content: "Menu";
+    position: absolute;
+    top: 5px;
+    right: 0px;
+    left: 0px;
+    color: black;
+    font-size: 10px;
+    font-weight: bold;
+    text-align: center;
+}
+
+#menu-checkbox:checked+#menu-label::before {
+    left: -39;
+}
+
+#menu-checkbox:checked+#menu-label::after {
+    left: 39;
+}
+
+#menu-checkbox:checked+#menu-label+#hamburger::before {
+    animation: moveUpTheDown 0.8s ease 0.2s forwards, shakeUp 0.8s ease 0.2s forwards, shakeDown 0.2s ease 0.2s forwards;
+}
+
+@keyframes moveUpTheDown {
+    0% {
+        top: 0px;
+    }
+    50% {
+        top: -27px;
+    }
+    100% {
+        top: -14px;
+    }
+}
+
+@keyframes shakeUp {
+    0% {
+        transform: rotateZ(0);
+    }
+    25% {
+        transform: rotateZ(-5deg);
+    }
+    50% {
+        transform: rotateZ(0);
+    }
+    75% {
+        transform: rotateZ(5deg);
+    }
+    100% {
+        transform: rotateZ(0);
+    }
+}

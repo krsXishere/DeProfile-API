@@ -90,7 +90,7 @@ class SekolahController extends Controller
     public function fotoProfilSekolah(Request $request, $id) {
         try {
             $request->validate([
-                'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+                'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:5048',
             ]);
 
             $image_path = $request->file('image')->store('sekolah', 'public');
@@ -152,7 +152,7 @@ class SekolahController extends Controller
         try {
             $sekolah = Sekolah::findOrFail($id);
             $image_path = public_path().'/storage'.'/'.$sekolah->image;
-            if(!$image_path) {
+            if(file_exists($image_path)) {
                 unlink($image_path);
             }
             // dd($image_path);

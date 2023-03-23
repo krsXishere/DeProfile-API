@@ -49,6 +49,8 @@ class AuthController extends Controller
             'email' => $fields['email'],
             // 'device_name' => $fields['device_name'],
             'password' => bcrypt($fields['password']),
+            'level_id' => "3",
+            'status' => "Sudah digunakan",
         ]);
 
         $data = User::where('email', $request->email)->first();
@@ -87,7 +89,7 @@ class AuthController extends Controller
                 'email' => ['Email atau password salah.'],
             ]);
         } else {
-            $token = $user->createToken($request->device_name, ['admin-user'])->plainTextToken;
+            $token = $user->createToken($request->email, ['admin-user'])->plainTextToken;
         }
     
         if($token) {
@@ -96,4 +98,4 @@ class AuthController extends Controller
             return APIFormatter::createAPI(400, 'Failed');
         }
     }
-    }
+}

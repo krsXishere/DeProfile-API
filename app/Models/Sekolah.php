@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Sekolah extends Model
 {
     use HasFactory;
-    use SoftDeletes;
 
     protected $table = 'sekolahs';
     protected $fillable = [
@@ -26,6 +25,7 @@ class Sekolah extends Model
         'image',
         'email',
         'kepala_sekolah',
+        'user_id',
     ];
 
     protected $hidden = [];

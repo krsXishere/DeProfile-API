@@ -33,52 +33,49 @@ use App\Http\Controllers\api\UserController;
 //     return $request->user();
 // });
 
+//sekolah
+Route::get('sekolah', [SekolahController::class, 'index']);
+Route::get('sekolah/{id}', [SekolahController::class, 'show']);
+Route::get('sekolah-guru/{id}', [SekolahController::class, 'guru']);
+Route::get('sekolah-fasilitas/{id}', [SekolahController::class, 'fasilitas']);
+Route::get('sekolah-galeri/{id}', [SekolahController::class, 'galeri']);
+Route::get('sekolah-jurusan/{id}', [SekolahController::class, 'jurusan']);
+Route::get('sekolah-prestasi/{id}', [SekolahController::class, 'prestasi']);
+Route::get('sekolah-ekstrakulikuler/{id}', [SekolahController::class, 'ekstrakulikuler']);
+Route::get('sekolah-jumlah-siswa/{id}', [SekolahController::class, 'countSiswa']);
+Route::get('sekolah-jumlah-guru/{id}', [SekolahController::class, 'countGuru']);
+Route::get('sekolah-search/{value}', [SekolahController::class, 'search']);
+
+//kurikulum
+Route::get('kurikulum', [KurikulumController::class, 'index']);
+Route::get('kurikulum-jurusan/{id}', [KurikulumController::class, 'jurusan']);
+
+//jurusan
+Route::get('jurusan', [JurusanController::class, 'index']);
+Route::get('jurusan/{id}', [JurusanController::class, 'show']);
+Route::get('jurusan-siswa/{id}', [JurusanController::class, 'siswa']);
+
+//prestasi
+Route::get('prestasi', [PrestasiController::class, 'index']);
+Route::get('prestasi/{id}', [PrestasiController::class, 'show']);
+
+//Fasilitas
+Route::get('fasilitas', [FasilitasController::class, 'index']);
+Route::get('fasilitas/{id}', [FasilitasController::class, 'show']);
+
+//Galeri
+Route::get('galeri', [GaleriController::class, 'index']);
+Route::get('galeri/{id}', [GaleriController::class, 'show']);
+
+//kurikulum
+Route::get('kurikulum', [KurikulumController::class, 'index']);
+Route::get('kurikulum/{id}', [KurikulumController::class, 'show']);
+
 //Auth public user
 Route::post('login', [AuthController::class, 'loginPublic']);
 Route::post('register', [AuthController::class, 'register']);
+    
 Route::group(['middleware' => ['auth:sanctum', 'ability:public-user']], function() {
-
-    //siswa
-    // Route::get('siswa', [SiswaController::class, 'index']);
-    // Route::get('jurusan-siswa/{id}', [JurusanController::class, 'siswa']);
-
-    //sekolah
-    Route::get('sekolah', [SekolahController::class, 'index']);
-    Route::get('sekolah/{id}', [SekolahController::class, 'show']);
-    Route::get('sekolah-guru/{id}', [SekolahController::class, 'guru']);
-    Route::get('sekolah-fasilitas/{id}', [SekolahController::class, 'fasilitas']);
-    Route::get('sekolah-galeri/{id}', [SekolahController::class, 'galeri']);
-    Route::get('sekolah-jurusan/{id}', [SekolahController::class, 'jurusan']);
-    Route::get('sekolah-prestasi/{id}', [SekolahController::class, 'prestasi']);
-    Route::get('sekolah-ekstrakulikuler/{id}', [SekolahController::class, 'ekstrakulikuler']);
-    Route::get('sekolah-jumlah-siswa/{id}', [SekolahController::class, 'countSiswa']);
-    Route::get('sekolah-jumlah-guru/{id}', [SekolahController::class, 'countGuru']);
-    Route::get('sekolah-search/{value}', [SekolahController::class, 'search']);
-
-    //kurikulum
-    Route::get('kurikulum', [KurikulumController::class, 'index']);
-    Route::get('kurikulum-jurusan/{id}', [KurikulumController::class, 'jurusan']);
-
-    //jurusan
-    Route::get('jurusan', [JurusanController::class, 'index']);
-    Route::get('jurusan/{id}', [JurusanController::class, 'show']);
-    Route::get('jurusan-siswa/{id}', [JurusanController::class, 'siswa']);
-
-    //prestasi
-    Route::get('prestasi', [PrestasiController::class, 'index']);
-    Route::get('prestasi/{id}', [PrestasiController::class, 'show']);
-
-    //Fasilitas
-    Route::get('fasilitas', [FasilitasController::class, 'index']);
-    Route::get('fasilitas/{id}', [FasilitasController::class, 'show']);
-
-    //Galeri
-    Route::get('galeri', [GaleriController::class, 'index']);
-    Route::get('galeri/{id}', [GaleriController::class, 'show']);
-
-    //kurikulum
-    Route::get('kurikulum', [KurikulumController::class, 'index']);
-    Route::get('kurikulum/{id}', [KurikulumController::class, 'show']);
 
     //User
     Route::get('user/userProfile', [UserController::class, 'userProfile']);

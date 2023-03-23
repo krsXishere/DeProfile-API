@@ -18,5 +18,9 @@ class Prestasi extends Model
         'sekolah_id',
     ];
 
+    public function sekolah() {
+        return $this->belongsTo(Sekolah::class);
+    }
+
     protected $hidden = [];
 }

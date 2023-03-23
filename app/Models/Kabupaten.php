@@ -18,6 +18,10 @@ class Kabupaten extends Model
 
     protected $hidden = [];
 
+    public function provinsi() {
+        return $this->belongsTo(Provinsi::class, 'provinsi_id', 'id');
+    }
+
     public function kecamatan() {
         return $this->hasMany(Kecamatan::class);
     }
